@@ -22,7 +22,7 @@ public class BallSript : MonoBehaviour
     
     public Vector3 DisplayNormal;
 
-
+    public Vector3 acceleration;
 
     
     
@@ -59,8 +59,13 @@ public class BallSript : MonoBehaviour
                 
                 //current normall
                 normal = Vector3.Cross(v1, v2).normalized;
-                
-                var acceleration = new Vector3(normal.x*normal.y, normal.y*normal.y-1,normal.z*normal.y)*gravity;
+                DisplayNormal = normal;
+
+                Debug.Log(p0+"  1: "+p1+"  2: "+p2);
+                Debug.Log("v1:"+v1+"  v2: "+v2);
+                Debug.Log(normal);
+
+                 acceleration = new Vector3(normal.x*normal.y, normal.y*normal.y-1,normal.z*normal.y)*gravity;
                 NextVelocity = CurrentVelocity + acceleration*Time.fixedDeltaTime;
                 CurrentVelocity = NextVelocity;
                 
@@ -95,7 +100,7 @@ public class BallSript : MonoBehaviour
                 PrevuesIndex = Currentindex;
                 
                 //this is for looking on the normal
-                DisplayNormal = normal;
+                
 
             }
 
