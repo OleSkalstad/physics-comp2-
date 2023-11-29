@@ -1,0 +1,11 @@
+I was able to work on this on multiple days.
+felt i knew what i was doing.
+Making a sketch of what i should expect and consulting with others (mostly Anders on the physics) made it esier to know what to do and what to work on. From what i used to be, in the previus years, i have gotten better on making clear goals, which has tolerant on what i should do in due time and not stress.
+
+the start of this project it was setting in assets that was going to be replaced. Then after that i made the assets that was going to take its place. I used blender and made the assets myself, The assets i am going to need to do the basics of the simulation is very simple and dosent take much time to make. 
+
+after that i made the code for spawning which is a simple respawn code that i have made before.
+
+Then came the stick that came up and down. I had sketches of how it should work. First i needed to find the the anchor point point, then find declare the tipping point. After this i can make a check if the anchor is above the tipping which is going to make the stick rotate.
+
+The last thing is going make the other part of making it going backwards. And then we have the loop of the simulation.
