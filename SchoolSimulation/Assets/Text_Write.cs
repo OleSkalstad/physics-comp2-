@@ -30,14 +30,12 @@ public class Text_Write : MonoBehaviour
     void Awake()
     {
         Directory.CreateDirectory(Application.streamingAssetsPath + "/GridTextFile/");
-        //CreateSurface();
-        //InstantiateCompromisedCords();
-        //ReadVertices("Vertecies.txt");
+        
+        InstantiateCompromisedCords();
+        ReadVertices("Vertecies.txt");
         ReadVertices("StreamingAssetsGrid.txt");
         WriteIndesiesAndNeighbours();
-        //WriteCords();
-
-        //TriangleNumbering();
+        WriteCords();
 
     }
 
@@ -84,12 +82,10 @@ public class Text_Write : MonoBehaviour
                         //finds out where the avarage hight is in the that perticaluare cordinate
                         median = zCompressedCords[i, j] / medianDevition[i, j];
                     }
-                        
                      //this is where we write the code out on a text file x,z,y cordinates
                      //and leave space between them so that they cna be read correctly   
                     File.AppendAllText(textDocumentation,
-                        xCompressedCords[i].ToString() + " " +
-                        median.ToString() + " " +
+                        xCompressedCords[i].ToString() + " " + median.ToString() + " " +
                             yCompressedCords[j].ToString() + "\n");
                 }
             }
@@ -99,10 +95,7 @@ public class Text_Write : MonoBehaviour
     //Function writes another text document that writes down the triangle and its neighbour
     private void WriteIndesiesAndNeighbours()
     {
-        int DEB1 = 0;
-        int deb2 = 0;
-        int deb3 = 0;
-        int deb4 = 0;
+        
 
         Indesies = new int[yCompressedCords.Length*xCompressedCords.Length*6];
         neighbour = new int[yCompressedCords.Length*xCompressedCords.Length*6];
@@ -128,24 +121,19 @@ public class Text_Write : MonoBehaviour
                 if (j == 0)
                 {
                     neighbour[index] = -1;
-                    DEB1++;
                 }
-
                 index++;
                 
                 Indesies[index] = j + (1 + i) * yCompressedCords.Length;
                 if (i < 1)
                 {
                     neighbour[index] = -1;
-                    deb2++;
                 }
                 else
                 {
                     neighbour[index] = 1+trekant-TrianglesInRow;
                 }
                 index++;
-                
-                
                 //trekant 2
                 trekant++;
                 Indesies[index] =  1 + j + i * yCompressedCords.Length;
@@ -153,15 +141,12 @@ public class Text_Write : MonoBehaviour
                 if (i == xCompressedCords.Length-2)
                 {
                     neighbour[index] = -1;
-                    deb3++;
                 }
-
                 index++;
                 
                 
                 Indesies[index] = 1+j + (1 + i) * yCompressedCords.Length;
                 neighbour[index] = trekant - 1;
-               
                 index++;
                 
                 
@@ -170,7 +155,6 @@ public class Text_Write : MonoBehaviour
                 if (j == yCompressedCords.Length-2)
                 {
                     neighbour[index] = -1;
-                    deb4++;
                 }
                 index++;
                 trekant++;
@@ -178,9 +162,7 @@ public class Text_Write : MonoBehaviour
             
         }
 
-        Debug.Log(DEB1+" "+ deb2+" "+deb3+" "+deb4);
-        //PrintOutIandN(index);
-        Debug.Log(index);
+        PrintOutIandN(index);
     }
 
     //Functoin prints out the indecies and neigbours
@@ -261,19 +243,17 @@ public class Text_Write : MonoBehaviour
                                 float y = float.Parse(strValues[1], cultureInfo)-yOffsett;
                                 float z = float.Parse(strValues[2], cultureInfo)-zOffsett;
                                 
+                  
                                 //Calculate height was only to make the first txt 
-                                //CalculateHight(x, y, z);
+                                CalculateHight(x, y, z);
                                 
-                                //Vertices[index] = new Vector3(x, z, y);
-                                // index++;
-                                
+                                index++;
                                                            
                             }
                         }
                     }
 
                     
-                    //Vertices = vectorList.ToArray();
                  
                 }
             }
@@ -342,6 +322,7 @@ public class Text_Write : MonoBehaviour
                                 indices.Add(int.Parse(strValues[2]));
                     
                                 // Skip the next ones (holds neighbor information)
+                                
                             }
                         }
                     }
